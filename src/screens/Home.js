@@ -47,6 +47,7 @@ const Home = () => {
       message: 'Hello world message',
       actions: ['Yes', 'No'],
       timeoutAfter: 9000,
+      color: 'red',
       bigLargeIconUrl: 'https://www.example.tld/bigicon.jpg',
       priority: 'max',
       visibility: 'secret',
@@ -55,13 +56,24 @@ const Home = () => {
       //onlyAlertOnce: false,
       //channelName: 'Text Channel',
     });
+
+    PushNotification.localNotificationSchedule({
+      channelId: 'test-channel',
+      title: '10 seconds notificaiton',
+      message: 'This is schedule notification',
+      color: 'green',
+      allowWhileIdle: true,
+      date: new Date(Date.now() + 10 * 1000),
+      //repeatType: 'time',
+      //repeatTime: 20000,
+    });
   };
 
   return (
-    <View style={{flex: 1, justifyContent: 'center'}}>
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <TouchableOpacity
         onPress={sendNotification}
-        style={{backgroundColor: 'red', padding: 10}}>
+        style={{backgroundColor: 'red', padding: 15, borderRadius: 10}}>
         <Text style={{fontSize: 25, color: 'white'}}>Send notification</Text>
       </TouchableOpacity>
     </View>
